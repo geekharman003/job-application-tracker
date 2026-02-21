@@ -18,10 +18,6 @@ const Attachment = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    fileType: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   },
   { timestamps: true },
 );

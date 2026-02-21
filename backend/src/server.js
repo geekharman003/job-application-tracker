@@ -1,11 +1,16 @@
 import express from "express";
 const app = express();
+import path from "path";
+import { fileURLToPath } from "url";
+import cors from "cors";
 
 import { sequelize } from "./utils/db.js";
 import { ENV } from "./config/env.js";
 
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
+import applicationRoutes from "./routes/application.route.js";
+import reminderRoutes from "./routes/reminder.route.js";
 
 import {
   User,
@@ -16,17 +21,26 @@ import {
   JobListing,
 } from "./models/index.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500",
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-
-app.use("/", (req, res) => {
-  res.send("Home route");
-});
+app.use("/api/applications", applicationRoutes);
+app.use("/api/applications/:applicationId/reminders", reminderRoutes);
 
 await sequelize.sync({ force: false });
-app.listen(ENV.PORT || 3000, () => {
+app.listen(ENV.PORT || 3000, async () => {
   console.log(`server is running on PORT:${ENV.PORT}`);
 });

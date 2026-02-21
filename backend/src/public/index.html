@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- signup form -->
+    <h2>Signup Form</h2>
+    <form action="/api/auth/signup" method="post">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" />
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" />
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" />
+
+      <br />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <br /><br />
+
+    <!-- login form -->
+    <h2>Login Form</h2>
+    <form action="/api/auth/login" method="post">
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" />
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" />
+
+      <br />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <br /><br />
+
+    <!-- application form -->
+    <h3>Application Form</h3>
+    <form
+      action="/api/applications"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label for="file">Select File:</label>
+      <input type="file" name="file" id="file" required />
+      <br /><br />
+      <label for="name">Company Name:</label>
+      <input type="text" name="name" id="name" required />
+      <br /><br />
+      <label for="industry">Company Industry:</label>
+      <input type="text" name="industry" id="industry" />
+      <br /><br />
+      <label for="size">Company Size:</label>
+      <input type="number" min="10" name="size" id="size" />
+      <br /><br />
+      <label for="contactEmail">Company Email:</label>
+      <input type="email" name="contactEmail" id="contactEmail" />
+      <br /><br />
+
+      <label for="jobTitle">Job Title</label>
+      <input type="text" name="jobTitle" id="jobTitle" required />
+      <br /><br />
+      <label for="applicationDate">Application Date</label>
+      <input type="date" name="applicationDate" id="applicationDate" required />
+      <br /><br />
+      <label for="status">Select Status:</label>
+      <select name="status" id="status" required>
+        <option value="applied">Applied</option>
+        <option value="interviewing">Interviewing</option>
+        <option value="offered">Offered</option>
+        <option value="rejected">Rejected</option>
+      </select>
+      <br /><br />
+      <label for="notes">Add your Note:</label>
+      <textarea name="notes" id="notes"> </textarea>
+      <br />
+      <button type="submit">upload</button>
+    </form>
+
+
+    <!-- attachment update form -->
+     <!-- <form onsubmit="updateAttachment(event)">
+        <input type="file" name="file" id="file" required>
+     </form> -->
+
+
+    <!-- <script>
+      async function updateAttachment(e) {
+        e.preventDefault();
+
+        const fileInput = document.getElementById("file");
+
+        if (!fileInput.files.length) {
+          alert("Please select a file first.");
+          return;
+        }
+
+        const formData = new FormData();
+        formData.set("file", fileInput.files[0]);
+
+        const response = await fetch("/api/applications/1/attachments", {
+          method: "PUT",
+          body: formData,
+        });
+
+        const data = await response.json();
+        console.log(data);
+      }
+    </script> -->
+  </body>
+</html>

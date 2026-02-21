@@ -11,7 +11,7 @@ const Company = sequelize.define(
       allowNull: false,
       references: {
         model: User,
-        key:"id"
+        key: "id",
       },
     },
     name: {
@@ -20,15 +20,16 @@ const Company = sequelize.define(
     },
     industry: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     size: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: null,
     },
     contactEmail: {
       type: DataTypes.STRING,
-    },
-    notes: {
-      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   { timestamps: true },

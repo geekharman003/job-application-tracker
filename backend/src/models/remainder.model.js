@@ -14,8 +14,8 @@ const Reminder = sequelize.define(
         key: "id",
       },
     },
-    remainderDate: {
-      type: DataTypes.DATE,
+    reminderDate: {
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     isSent: {
