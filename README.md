@@ -14,6 +14,9 @@ Lightweight backend API for a job application tracker built with Node.js, Expres
 This repo contains the backend server only. The entry point is in [src/server.js](src/server.js).
 
 Getting started
+- Go inside backend
+  `cd backend`
+
 - Install dependencies:
 
   `npm install`
