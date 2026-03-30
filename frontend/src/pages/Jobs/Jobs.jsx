@@ -203,11 +203,9 @@ function Jobs() {
                 {applications && applications.length ? (
                   applications.map((application, index) => (
                     <tr
-                      onClick={() =>
-                        navigate(`/jobs/${application.id}`)
-                      }
+                      onClick={() => navigate(`/jobs/${application.id}`)}
                       key={index}
-                      className="border-b-2"
+                      className="border-b-2 hover:cursor-pointer hover:border-blue-400"
                     >
                       <td>{application.company}</td>
                       <td>{application.jobTitle}</td>

@@ -122,6 +122,30 @@ function Profile() {
     }
   };
 
+  const downloadCSV = async () => {
+    try {
+      const response = await axiosClient.get("/users/profile/data");
+      const csvData = response?.data?.csvData;
+
+      const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
+
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      // a.setAttribute("href",url)
+      a.href = url;
+      // a.setAttribute("download","data.csv")
+      a.download = "data.csv";
+
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.log("Error in downloadCSV:", error);
+      toast.error("Failed to export data");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -324,10 +348,8 @@ function Profile() {
                 </div>
               ))
             ) : (
-              <div
-                className="border-2 p-2 mt-3 rounded-xl"
-              >
-               <p className="text-center">No resumes Added</p>
+              <div className="border-2 p-2 mt-3 rounded-xl">
+                <p className="text-center">No resumes Added</p>
               </div>
             )}
           </div>
@@ -347,7 +369,10 @@ function Profile() {
                 </p>
               </div>
               <div>
-                <button className="text-sm border border-slate-300 rounded-xl p-2 hover:bg-slate-100">
+                <button
+                  onClick={() => downloadCSV()}
+                  className="text-sm border border-slate-300 rounded-xl p-2 hover:bg-slate-100"
+                >
                   Export CSV
                 </button>
               </div>

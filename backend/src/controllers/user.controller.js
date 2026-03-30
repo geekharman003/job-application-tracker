@@ -1,5 +1,7 @@
 import sharp from "sharp";
-import { Resume, User } from "../models/index.js";
+import { parse } from "json2csv";
+
+import { Application, Company, Resume, User } from "../models/index.js";
 import s3 from "../config/aws_s3.js";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { ENV } from "../config/env.js";
@@ -21,11 +23,10 @@ export const getProfile = async (req, res) => {
 
     let signedUrl = null;
 
-    if(user.profilePicUrl){
+    if (user.profilePicUrl) {
       const getCommand = getObjectCommand(ENV.BUCKET_NAME, user.profilePicUrl);
       signedUrl = await getSignedUrl(s3, getCommand, { expiresIn: 60 });
     }
-
 
     const resumes = await Resume.findAll({
       where: {
@@ -229,4 +230,32 @@ export const deleteResume = async (req, res) => {
   }
 };
 
-export const exportDataAsCSV = async (req, res) => {};
+export const exportDataAsCSV = async (req, res) => {
+  const { id: userId } = req.user;
+  try {
+    const applications = await Application.findAll({
+      where: { UserId: userId },
+      attributes: {
+        exclude: ["id", "UserId", "createdAt", "updatedAt"],
+      },
+      raw: true,
+    });
+
+    for (const application of applications) {
+      const companyDetails = await Company.findByPk(application.CompanyId, {
+        attributes: ["name"],
+        raw: true,
+      });
+
+      application.company = companyDetails.name;
+      delete application.CompanyId;
+    }
+
+    const csvData = parse(applications, { header: true });
+
+    res.status(200).json({ csvData: csvData });
+  } catch (error) {
+    console.log("Error in exportDataAsCSV:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
