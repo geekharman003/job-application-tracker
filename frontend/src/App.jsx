@@ -19,21 +19,15 @@ function App() {
 
   useEffect(() => {
     const html = document.documentElement;
-    const theme = localStorage.getItem("theme");
 
-    if (theme) {
-      if (darkMode) {
-        html.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      } else {
-        html.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-      }
+    if (darkMode) {
+      html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      localStorage.setItem("theme", darkMode ? "dark" : "light");
+      html.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
-
 
   return (
     <>

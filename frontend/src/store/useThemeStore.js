@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const useTheme = create((set) => ({
-  darkMode: false,
+  darkMode: () => set(() => ({darkMode: localStorage.getItem("theme") === "dark"})),
   setDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
 }));
 
