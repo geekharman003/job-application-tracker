@@ -50,8 +50,8 @@ export const checkReminders = async () => {
 // this scheduler runs everyday at 9:00 AM
 cron.schedule(
   "0 9 * * *",
-  () => {
-    checkReminders();
+  async () => {
+    await checkReminders();
   },
   {
     timezone: "Asia/Kolkata",
