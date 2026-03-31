@@ -40,8 +40,8 @@ function Jobs() {
   }, [filters.company, filters.jobTitle, filters.status]);
 
   useEffect(() => {
+    setOffset((page - 1) * limit);
     (async () => {
-      setOffset((page - 1) * limit);
       try {
         const response = await axiosClient.get(
           `/applications?limit=${limit}&offset=${offset}&title=${filters.jobTitle}&status=${filters.status}&company=${filters.company}`,
@@ -112,11 +112,13 @@ function Jobs() {
         ""
       )}
 
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-gray-100 dark:bg-zinc-800 min-h-screen">
         <div className="p-4 max-w-4xl m-auto">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-2xl font-bold">Job Applications</h2>
+              <h2 className="text-2xl dark:text-white font-bold">
+                Job Applications
+              </h2>
               <p className="text-slate-500 mt-1">
                 {pagination.totalRecords} total application(s)
               </p>
@@ -186,7 +188,7 @@ function Jobs() {
           <div className="mt-3 overflow-auto">
             <table
               id="applications-table"
-              className="w-full text-left border-gray-200 border-2  rounded-lg overflow-hidden"
+              className="w-full text-left border-gray-200 border-2 rounded-lg overflow-hidden"
             >
               <thead>
                 <tr className="text-slate-500 text-sm">
@@ -199,7 +201,7 @@ function Jobs() {
                   <th className="text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white">
+              <tbody className="bg-white dark:bg-zinc-800 dark:text-white">
                 {applications && applications.length ? (
                   applications.map((application, index) => (
                     <tr
@@ -260,14 +262,14 @@ function Jobs() {
             </table>
           </div>
           <div id="pagination" className="mt-3">
-            <p className="text-center">
+            <p className="text-center dark:text-white">
               Showing {pagination?.start} to {pagination?.end} of{" "}
               {pagination?.totalRecords} entries
             </p>
             <div className="flex justify-center gap-2 mt-1">
               <button
                 onClick={() => setPage((prev) => prev - 1)}
-                className={`flex items-center gap-1 rounded-lg ${pagination?.hasPrevPage ? "bg-gray-300" : "bg-gray-200"} hover:bg-gray-400 p-1`}
+                className={`flex items-center gap-1 rounded-lg ${pagination?.hasPrevPage ? "bg-gray-300" : "bg-gray-200"} ${pagination?.hasPrevPage ? "cursor-default" : "cursor-not-allowed"} hover:bg-gray-400 p-1`}
                 disabled={pagination?.hasPrevPage ? false : true}
               >
                 <span>
@@ -277,7 +279,7 @@ function Jobs() {
               </button>
               <button
                 onClick={() => setPage((prev) => prev + 1)}
-                className={`flex items-center gap-1 rounded-lg ${pagination?.hasNextPage ? "bg-gray-300" : "bg-gray-200"} hover:bg-gray-400 p-1`}
+                className={`flex items-center gap-1 rounded-lg ${pagination?.hasNextPage ? "bg-gray-300" : "bg-gray-200"} ${pagination.hasNextPage ? "cursor-default" : "cursor-not-allowed"} hover:bg-gray-400 p-1`}
                 disabled={pagination.hasNextPage ? false : true}
               >
                 Next

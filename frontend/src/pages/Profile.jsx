@@ -154,16 +154,16 @@ function Profile() {
       ) : (
         ""
       )}
-      <div className="bg-gray-100 p-4">
+      <div className="bg-gray-100 dark:bg-zinc-800 p-4">
         <div className="max-w-4xl m-auto">
-          <h2 className="text-2xl font-bold">Profile</h2>
+          <h2 className="text-2xl dark:text-white font-bold">Profile</h2>
           <p className="text-slate-500">
             Manage your personal information and preferences
           </p>
           {/* profile section */}
-          <div className="bg-white rounded-xl">
+          <div className="bg-white dark:bg-zinc-900 rounded-xl">
             <div className="flex gap-2 rounded-lg px-3 py-4 mt-5">
-              <div className="flex justify-center items-center rounded-full text-white bg-blue-700 w-[80px] h-[80px]">
+              <div className="flex justify-center items-center rounded-full text-white bg-blue-700 w-[80px] h-[80px] dark:border-white dark:border-2">
                 <img
                   className="w-[80px] h-[80px] text-center object-cover rounded-full"
                   src={profileUrl || defaultProfile}
@@ -175,14 +175,14 @@ function Profile() {
                 />
               </div>
               <div>
-                <p className="font-bold">{name}</p>
+                <p className="font-bold dark:text-white">{name}</p>
                 <p className="text-sm text-slate-500">{email}</p>
                 <div>
                   <input
                     onChange={(e) => setSelectedProfilePic(e?.target?.files[0])}
                     type="file"
                     accept="image/*"
-                    className="mt-2"
+                    className="mt-2 dark:text-white"
                   />
                 </div>
                 {selectedProfilePic ? (
@@ -199,7 +199,7 @@ function Profile() {
             </div>
             <div className="flex justify-between gap-2 p-4">
               <div className="w-6/12">
-                <label htmlFor="name" className="font-medium">
+                <label htmlFor="name" className="font-medium dark:text-white">
                   Full Name
                 </label>
                 <br />
@@ -213,7 +213,7 @@ function Profile() {
                 />
               </div>
               <div className="w-6/12">
-                <label htmlFor="email" className="font-medium">
+                <label htmlFor="email" className="font-medium dark:text-white">
                   Email
                 </label>
                 <br />
@@ -228,7 +228,7 @@ function Profile() {
               </div>
             </div>
             <div className="p-4">
-              <label htmlFor="bio" className="font-medium">
+              <label htmlFor="bio" className="font-medium dark:text-white">
                 Bio
               </label>
               <br />
@@ -243,7 +243,7 @@ function Profile() {
             </div>
             <div className="flex justify-between gap-2 p-4">
               <div className="w-6/12">
-                <label htmlFor="linkedIn" className="font-medium">
+                <label htmlFor="linkedIn" className="font-medium dark:text-white">
                   Linkedin
                 </label>
                 <br />
@@ -257,7 +257,7 @@ function Profile() {
                 />
               </div>
               <div className="w-6/12">
-                <label htmlFor="github" className="font-medium">
+                <label htmlFor="github" className="font-medium dark:text-white">
                   Github
                 </label>
                 <br />
@@ -285,14 +285,14 @@ function Profile() {
             </div>
           </div>
           {/* resume section */}
-          <div className="mt-5 bg-white rounded-xl p-4">
+          <div className="mt-5 bg-white dark:bg-zinc-900 rounded-xl p-4">
             <div className="flex justify-between items-end gap-1">
               <div>
                 <div className="flex items-center gap-1">
-                  <span>
-                    <FileText size={15} />
+                  <span className="dark:text-white">
+                    <FileText size={15}/>
                   </span>
-                  <span className="text-sm font-medium">Resume Versions</span>
+                  <span className="text-sm font-medium dark:text-white">Resume Versions</span>
                 </div>
                 <p className="text-xs text-slate-500">
                   Track which resume version you used for each application
@@ -301,6 +301,7 @@ function Profile() {
               <div>
                 <input
                   onChange={(e) => setSelectedResume(e?.target?.files[0])}
+                  className="dark:text-white"
                   type="file"
                   accept="application/pdf"
                   name="resume"
@@ -328,11 +329,11 @@ function Profile() {
                     <span className="w-fit bg-slate-200 p-2 rounded-xl">
                       <FileText size={20} />
                     </span>
-                    <span className="text-sm">{resume.version}</span>
+                    <span className="text-sm dark:text-white">{resume.version}</span>
                   </div>
                   <div className="flex items-center">
                     <a
-                      className="hover:bg-slate-200 rounded-xl py-1 px-3"
+                      className="hover:bg-slate-200 dark:hover:bg-zinc-800 dark:text-white rounded-xl py-1 px-3"
                       href={resume.signedUrl}
                       target="_blank"
                     >
@@ -349,13 +350,13 @@ function Profile() {
               ))
             ) : (
               <div className="border-2 p-2 mt-3 rounded-xl">
-                <p className="text-center">No resumes Added</p>
+                <p className="text-center dark:text-white">No resumes Added</p>
               </div>
             )}
           </div>
           {/* account section */}
-          <div className="mt-5 bg-white rounded-xl p-4">
-            <div className="flex items-center gap-2">
+          <div className="mt-5 bg-white dark:bg-zinc-900 rounded-xl p-4">
+            <div className="flex items-center gap-2 dark:text-white">
               <span>
                 <User size={15} />
               </span>
@@ -363,7 +364,7 @@ function Profile() {
             </div>
             <div className="flex items-center justify-between mt-3 py-2 border-b-2">
               <div>
-                <p className="font-medium">Export Data</p>
+                <p className="font-medium dark:text-white">Export Data</p>
                 <p className="text-sm text-slate-500">
                   Download all your application data as CSV
                 </p>
@@ -371,7 +372,7 @@ function Profile() {
               <div>
                 <button
                   onClick={() => downloadCSV()}
-                  className="text-sm border border-slate-300 rounded-xl p-2 hover:bg-slate-100"
+                  className="text-sm border border-slate-300 dark:text-white dark:hover:bg-zinc-800 rounded-xl p-2 hover:bg-slate-100"
                 >
                   Export CSV
                 </button>

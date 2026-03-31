@@ -125,11 +125,11 @@ function JobApplication() {
   return (
     <>
       <Header />
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-gray-100 dark:bg-zinc-800 min-h-screen">
         <div id="job-application" className="p-4 max-w-4xl m-auto">
           <Link
             to={"/jobs"}
-            className="inline-flex items-center gap-1 text-xs hover:bg-slate-200 p-1 rounded-lg"
+            className="inline-flex items-center gap-1 text-xs hover:bg-slate-200 p-1 rounded-lg dark:text-white dark:hover:bg-zinc-700"
           >
             {" "}
             <span>
@@ -143,7 +143,7 @@ function JobApplication() {
                 <Building2 size={30} />
               </span>
               <div>
-                <h2 className="text-2xl font-bold ">{jobTitle}</h2>
+                <h2 className="text-2xl dark:text-white font-bold ">{jobTitle}</h2>
                 <p className="text-slate-500">{company}</p>
                 <p className="flex items-center gap-2 flex-wrap text-slate-500">
                   <span className="inline-flex items-center">
@@ -171,15 +171,15 @@ function JobApplication() {
               <StatusBadge status={status} />
               <Link
                 to={jobLink ? jobLink : "#"}
-                className="border-2 p-1 rounded-lg"
+                className="border-2 p-1 rounded-lg dark:text-white dark:border-zinc-700"
               >
                 View Job
               </Link>
             </div>
           </div>
           {/* job details section */}
-          <div className="p-3 bg-white mt-4 rounded-lg border-2">
-            <p className="flex items-center gap-1 text-sm font-medium">
+          <div className="p-3 bg-white dark:bg-zinc-900 dark:border-zinc-700 mt-4 rounded-lg border-2">
+            <p className="flex items-center gap-1 text-sm font-medium dark:text-white">
               <span>
                 <FileText size={15} />
               </span>
@@ -188,31 +188,31 @@ function JobApplication() {
             <div className="flex mt-2">
               <div className="w-[50%]">
                 <p className="text-slate-500">Company</p>
-                <p className="font-medium">{company}</p>
+                <p className="font-medium dark:text-white">{company}</p>
               </div>
               <div className="w-[50%]">
                 <p className="text-slate-500">Location</p>
-                <p className="font-medium">{location}</p>
+                <p className="font-medium dark:text-white">{location}</p>
               </div>
             </div>
             <div className="flex mt-4 pb-3 border-b-2">
               <div className="w-[50%]">
                 <p className="text-slate-500">Salary</p>
-                <p className="font-medium">{salaryRange || "Not Added"}</p>
+                <p className="font-medium dark:text-white">{salaryRange || "Not Added"}</p>
               </div>
               <div className="w-[50%]">
                 <p className="text-slate-500">Resume Version</p>
-                <p className="font-medium">{resumeVersion}</p>
+                <p className="font-medium dark:text-white">{resumeVersion}</p>
               </div>
             </div>
             <div className="mt-2">
               <p className="text-slate-500">Description</p>
-              <p>{jobDescription || "Not Added"}</p>
+              <p className="dark:text-white">{jobDescription || "Not Added"}</p>
             </div>
           </div>
           {/* notes section */}
-          <div className="p-3 bg-white mt-4 rounded-lg border-2">
-            <p className="flex items-center justify-between gap-1 text-sm font-medium">
+          <div className="p-3 bg-white dark:bg-zinc-900 dark:border-zinc-700 mt-4 rounded-lg border-2">
+            <p className="flex items-center justify-between gap-1 text-sm font-medium dark:text-white">
               <span className="inline-flex items-center">
                 <span>
                   <FileText size={15} />
@@ -266,8 +266,8 @@ function JobApplication() {
             </div>
           </div>
           {/* reminders section */}
-          <div className="p-3 bg-white mt-4 rounded-lg border-2">
-            <p className="flex items-center justify-between gap-1 text-sm font-medium">
+          <div className="p-3 bg-white dark:bg-zinc-900 dark:border-zinc-700 mt-4 rounded-lg border-2">
+            <p className="flex items-center justify-between gap-1 text-sm font-medium dark:text-white">
               <span className="inline-flex items-center">
                 <span>
                   <Bell size={15} />
@@ -280,7 +280,8 @@ function JobApplication() {
               <form onSubmit={(e) => addReminder(e)}>
                 <div className="flex gap-2">
                   <div className="flex flex-col w-[50%]">
-                    <label htmlFor="message">Message</label>
+                    <label
+                    className="dark:text-white" htmlFor="message">Message</label>
                     <input
                       className="border-2 rounded-lg p-1"
                       type="text"
@@ -298,7 +299,7 @@ function JobApplication() {
                     />
                   </div>
                   <div className="flex flex-col w-[50%]">
-                    <label htmlFor="dueDate">Due Date</label>
+                    <label className="dark:text-white" htmlFor="dueDate">Due Date</label>
                     <input
                       className="border-2 rounded-lg p-1"
                       type="date"

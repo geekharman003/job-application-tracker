@@ -96,17 +96,17 @@ function Dashboard() {
   return (
     <>
       <Header />
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-gray-100 dark:bg-zinc-800 min-h-screen">
         <div className="max-w-4xl m-auto p-4">
           <div>
-            <h2 className="text-2xl font-bold">Dashboard</h2>
+            <h2 className="text-2xl font-bold dark:text-white">Dashboard</h2>
             <p className="text-slate-500">Track your job search progress</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
-            <div className="flex justify-between p-5 bg-white rounded-lg">
+            <div className="flex justify-between p-5 bg-white dark:bg-zinc-900 rounded-lg">
               <div>
                 <p className="text-slate-500">Total Applications</p>
-                <p className="text-2xl font-semibold">
+                <p className="text-2xl dark:text-white font-semibold">
                   {summary.totalApplications}
                 </p>
               </div>
@@ -119,10 +119,12 @@ function Dashboard() {
                 </span>
               </div>
             </div>
-            <div className="flex justify-between p-5 bg-white rounded-lg">
+            <div className="flex justify-between dark:bg-zinc-900 p-5 bg-white rounded-lg">
               <div>
                 <p className="text-slate-500">Interviews</p>
-                <p className="text-2xl font-semibold">{summary.interview}</p>
+                <p className="text-2xl dark:text-white font-semibold">
+                  {summary.interview}
+                </p>
                 <p className="text-sm text-slate-500">
                   {summary.responseRate}% response rate
                 </p>
@@ -136,10 +138,12 @@ function Dashboard() {
                 </span>
               </div>
             </div>
-            <div className="flex justify-between p-5 bg-white rounded-lg">
+            <div className="flex justify-between p-5 bg-white dark:bg-zinc-900 rounded-lg">
               <div>
                 <p className="text-slate-500">Offers</p>
-                <p className="text-2xl font-semibold">{summary.offer}</p>
+                <p className="text-2xl dark:text-white font-semibold">
+                  {summary.offer}
+                </p>
                 <p className="text-sm text-slate-500">
                   {summary.offerRate}% offer rate
                 </p>
@@ -153,10 +157,12 @@ function Dashboard() {
                 </span>
               </div>
             </div>
-            <div className="flex justify-between p-5 bg-white rounded-lg">
+            <div className="flex justify-between p-5 bg-white dark:bg-zinc-900 rounded-lg">
               <div>
                 <p className="text-slate-500">Rejections</p>
-                <p className="text-2xl font-semibold">{summary.rejected}</p>
+                <p className="text-2xl dark:text-white font-semibold">
+                  {summary.rejected}
+                </p>
               </div>
               <div>
                 <span
@@ -169,10 +175,10 @@ function Dashboard() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-            <div className="flex justify-center items-center w-full md: gap-2 p-5 bg-white rounded-lg">
+            <div className="flex justify-center items-center w-full md: gap-2 p-5 bg-white dark:bg-zinc-900 rounded-lg">
               <div className="text-center">
                 <p className="text-slate-500">Response Rate</p>
-                <p className="text-2xl font-semibold">
+                <p className="text-2xl dark:text-white font-semibold">
                   {summary.responseRate}%
                 </p>
                 <p className="text-slate-500 text-sm">
@@ -180,7 +186,7 @@ function Dashboard() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-center items-center w-full gap-2 p-5 bg-white rounded-lg">
+            <div className="flex justify-center items-center w-full gap-2 p-5 bg-white dark:bg-zinc-900 rounded-lg">
               <div className="text-center">
                 <p className="text-slate-500">Offer Rate</p>
                 <p className="text-2xl font-semibold text-green-500">
@@ -189,7 +195,7 @@ function Dashboard() {
                 <p className="text-slate-500 text-sm">Offers / Interviews</p>
               </div>
             </div>
-            <div className="flex justify-center items-center w-full gap-2 p-5 bg-white rounded-lg">
+            <div className="flex justify-center items-center w-full gap-2 p-5 bg-white dark:bg-zinc-900 rounded-lg">
               <div className="text-center">
                 <p className="text-slate-500">Active Pipeline</p>
                 <p className="text-2xl font-semibold text-blue-500">
@@ -202,31 +208,40 @@ function Dashboard() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
-            <div className="bg-white p-3">
-              <p className="font-semibold">Recent Applications</p>
+            <div className="bg-white dark:bg-zinc-900 p-3">
+              <p className="font-semibold dark:text-white">
+                Recent Applications
+              </p>
               {applications && applications.length
-                ? applications.map((application,index) => (
-                    <div key={index} className="flex justify-between bg-slate-100 mt-2 p-3 py-5 rounded-lg">
+                ? applications.map((application, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between bg-slate-100 dark:bg-zinc-800 mt-2 p-3 py-5 rounded-lg"
+                    >
                       <div>
-                        <p className="font-medium">{application.jobTitle}</p>
+                        <p className="font-medium dark:text-white">
+                          {application.jobTitle}
+                        </p>
                         <p className="text-slate-500">{application?.company}</p>
                       </div>
                       <div>
-                        <p className="font-medium">{application.applicationDate}</p>
+                        <p className="font-medium dark:text-white">
+                          {application.applicationDate}
+                        </p>
                       </div>
                     </div>
                   ))
                 : ""}
             </div>
-            <div className="bg-white p-3">
-              <p className="font-semibold">Status Distribution</p>
+            <div className="bg-white dark:bg-zinc-900 p-3">
+              <p className="font-semibold dark:text-white">Status Distribution</p>
               <div className="flex justify-center items-center">
                 <PieChartComponent data={pieChartData} />
               </div>
             </div>
-            <div className="bg-white md:col-span-2 p-3">
-              <p className="font-semibold">Application Funnel</p>
-              <div className="flex justify-center items-center">
+            <div className="bg-white dark:bg-zinc-900 md:col-span-2 p-3">
+              <p className="font-semibold dark:text-white">Application Funnel</p>
+              <div className="flex justify-center items-center mt-3">
                 <FunnelChartComponent data={funnelChartData} />
               </div>
             </div>

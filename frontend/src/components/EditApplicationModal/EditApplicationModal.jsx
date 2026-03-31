@@ -80,18 +80,18 @@ function EditApplicationModal({
     >
       <div
         id="modal"
-        className="relative p-3 bg-white opacity-100 z-40 rounded-xl"
+        className="relative p-3 bg-white dark:bg-zinc-800 opacity-100 z-40 rounded-xl"
       >
         <X
           onClick={() => setSelectedApplication(null)}
           size={20}
-          className="absolute top-2 right-2 active:border-blue-500 active:border-2 rounded-lg"
+          className="absolute top-2 right-2 active:border-blue-500 active:border-2 rounded-lg dark:text-white"
         />
         <form onSubmit={(e) => editApplication(e)} className="p-2">
-          <p className="text-lg font-semibold">Edit Application</p>
+          <p className="text-lg font-semibold dark:text-white">Edit Application</p>
           <div className="flex gap-2 mt-4">
             <div>
-              <label className="font-medium" htmlFor="company">
+              <label className="font-medium dark:text-white" htmlFor="company">
                 Company <sup>*</sup>
               </label>
               <br />
@@ -107,7 +107,7 @@ function EditApplicationModal({
               />
             </div>
             <div>
-              <label className="font-medium" htmlFor="title">
+              <label className="font-medium dark:text-white" htmlFor="title">
                 Job Title <sup>*</sup>
               </label>
               <br />
@@ -125,7 +125,7 @@ function EditApplicationModal({
           </div>
           <div className="flex gap-2 mt-4">
             <div>
-              <label className="font-medium" htmlFor="location">
+              <label className="font-medium dark:text-white" htmlFor="location">
                 Location <sup>*</sup>
               </label>
               <br />
@@ -141,7 +141,7 @@ function EditApplicationModal({
               />
             </div>
             <div>
-              <label className="font-medium" htmlFor="salaryRange">
+              <label className="font-medium dark:text-white" htmlFor="salaryRange">
                 Salary Range
               </label>
               <br />
@@ -157,7 +157,7 @@ function EditApplicationModal({
             </div>
           </div>
           <div className="flex flex-col gap-2 mt-4">
-            <label className="font-medium" htmlFor="jobLink">
+            <label className="font-medium dark:text-white" htmlFor="jobLink">
               Job Link
             </label>
             <input
@@ -172,7 +172,7 @@ function EditApplicationModal({
           </div>
           <div className="flex gap-2 mt-4">
             <div className="w-full">
-              <label className="font-medium" htmlFor="status">
+              <label className="font-medium dark:text-white" htmlFor="status">
                 Status
               </label>
               <br />
@@ -191,7 +191,7 @@ function EditApplicationModal({
               </select>
             </div>
             <div className="w-full">
-              <label className="font-medium" htmlFor="applicationDate">
+              <label className="font-medium dark:text-white" htmlFor="applicationDate">
                 Date Applied <sup>*</sup>
               </label>
               <br />
@@ -209,7 +209,7 @@ function EditApplicationModal({
           </div>
           <div className="flex gap-2 mt-4">
             <div className="w-full">
-              <label className="font-medium" htmlFor="resumeVersion">
+              <label className="font-medium dark:text-white" htmlFor="resumeVersion">
                 Resume Version <sup>*</sup>
               </label>
               <br />
@@ -227,7 +227,7 @@ function EditApplicationModal({
           </div>
           <div className="flex gap-2 mt-4">
             <div className="w-full">
-              <label className="font-medium" htmlFor="description">
+              <label className="font-medium dark:text-white" htmlFor="description">
                 Job Description / Notes
               </label>
               <br />
@@ -244,7 +244,7 @@ function EditApplicationModal({
           <div className="flex justify-end gap-2 mt-4">
             <button
               onClick={() => setSelectedApplication(null)}
-              className="border-2 rounded-lg p-1 hover:bg-slate-100"
+              className="border-2 rounded-lg p-1 hover:bg-slate-100 dark:text-white dark:hover:bg-zinc-700 dark:border-zinc-600"
             >
               Cancel
             </button>

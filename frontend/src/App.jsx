@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import "./App.css";
 import Signup from "./pages/signup.jsx";
@@ -9,9 +10,30 @@ import useAuth from "./store/useAuthStore.js";
 import NotFound from "./pages/NotFound.jsx";
 import Jobs from "./pages/Jobs/Jobs.jsx";
 import JobApplication from "./components/JobApplication/JobApplication.jsx";
+import useTheme from "./store/useThemeStore.js";
 
 function App() {
   const authUser = useAuth((state) => state.authUser);
+
+  const { darkMode } = useTheme();
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const theme = localStorage.getItem("theme");
+
+    if (theme) {
+      if (darkMode) {
+        html.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        html.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+    } else {
+      localStorage.setItem("theme", darkMode ? "dark" : "light");
+    }
+  }, [darkMode]);
+
 
   return (
     <>
