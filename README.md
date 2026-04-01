@@ -1,192 +1,435 @@
-# Job Application Tracker API (Backend)
+# 💼 Job Application Tracker
 
-## About
+A full-stack web application to **track, manage, and analyze job applications** efficiently.
+Built with a modern tech stack, it helps users stay organized throughout their job search journey.
 
-**Job Application Tracker API** is a robust backend service designed to help job seekers manage their application journey effectively. The API provides comprehensive tools to track applications, organize companies, manage reminders, and monitor interview progress—all in one centralized system.
+---
 
-Built with modern Node.js technologies, this API enables users to:
-- Create and manage job applications with detailed tracking
-- Store company information and contact details
-- Upload and manage resumes/attachments per application
-- Set reminders for follow-ups on applications
-- View actionable analytics—track response rates, application status distribution, and interview progress
-- Secure their data with JWT authentication
+## 🎯 Motivation
 
-**Tech stack**
-- Node.js + Express
-- Sequelize (+ mysql2) for ORM
-- Cloudinary for file uploads
-- Resend for transactional emails
-- JWT for auth
-- nodemon for development
+Job hunting can quickly become overwhelming—applications spread across multiple platforms, forgotten follow-ups, and no clear way to track progress. Many candidates end up relying on spreadsheets or memory, which leads to missed opportunities and poor organization.
 
-**Quick status**
-This repo contains the backend server only. The entry point is in [backend/src/server.js](backend/src/server.js).
+The **Job Application Tracker** was built to solve this problem by providing a centralized, intuitive platform where users can:
 
-Getting started
-- Go inside backend:
+- Organize all job applications in one place
+- Track progress across different stages of the hiring process
+- Store resumes and related documents securely
+- Gain insights through visual analytics
 
-  `cd backend`
+This project aims to simplify the job search journey, reduce stress, and help users stay focused and proactive in achieving their career goals.
 
-- Install dependencies:
+---
 
-  `npm install`
+## 🚀 Features
 
-- Run in development (auto-reload):
+- 📋 **Application Management**
+  - Add, edit, and delete job applications
+  - Track company, role, status, and notes
+  - Filter applications
 
-  `npm run dev`
+- 📱 **Profile Management**
+  - delete,Edit profile details
+  - set profile image
+  - Dark/Light mode support
 
-- Start production server:
+- 📊 **Analytics Dashboard**
+  - Visualize job application trends using charts
+  - Track progress across different stages
 
-  `npm start`
+- 🔐 **Authentication & Security**
+  - Secure login/signup using JWT
+  - Password hashing with bcrypt
 
-Configuration / Environment
-Create a `.env` file in the `backend` folder (an example is below). The app reads values from [backend/src/config/env.js](backend/src/config/env.js).
+- 📁 **File Uploads**
+  - Upload resumes and documents
+  - Cloud storage support (AWS S3)
 
-Recommended environment variables
+- 📧 **Email Integration**
+  - Notifications using Resend API
 
-- `PORT` — server port (e.g. 4000)
-- `NODE_ENV` — development | production
-- `DB_USERNAME` — MySQL username
-- `DB_PASSWORD` — MySQL password
-- `DB_HOST` — MySQL host
-- `JWT_SECRET` — secret for signing JWTs
-- `CLOUDINARY_CLOUD_NAME` — Cloudinary cloud name
-- `CLOUDINARY_API_KEY` — Cloudinary API key
-- `CLOUDINARY_API_SECRET` — Cloudinary API secret
-- `RESEND_API_KEY` — Resend API key
-- `EMAIL_FROM` — sender email address
-- `EMAIL_FROM_NAME` — sender display name
+- ⏰ **Automations**
+  - Scheduled tasks using cron jobs
 
-Example minimal .env (do NOT commit real credentials):
+---
 
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React (Vite)
+- React Router
+- Zustand (state management)
+- TailwindCSS (css styling)
+- Recharts (data visualization)
+- Axios (api requests)
+
+### Backend
+
+- Node.js
+- Express.js
+- Sequelize ORM
+- MySQL
+
+### Other Tools & Services
+
+- AWS S3 (file storage)
+- JWT (authentication)
+- Multer (file uploads)
+- Node-cron (scheduled jobs)
+- bcryptjs (password hashing)
+
+---
+
+## 📂 Project Structure
+
+```bash
+Job Application Tracker/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── assets/        #static assets
+│   │   ├── axios/         #axios instance
+│   │   ├── components/    #react components
+│   │   ├── pages/         #pages components
+│   │   ├── store/         #zustand store
+│   │   ├── App.css        #App component css
+│   │   ├── App.jsx        #App component
+│   │   ├── index.css      #global css
+│   │   ├── main.jsx       #react entry point
+│   └── package.json       #dependencies and metadata
+│
+├── backend/
+│   ├── src/
+│   │   ├── config/         #configuration files
+│   │   ├── controllers/    #route handlers
+│   │   ├── middleware/     #authentication and authorization
+│   │   ├── models/         #DB schemas
+│   │   ├── public/         #static assets
+│   │   ├── routes/         #API endpoints
+│   │   ├── utils/          #helper functions
+│   │   └── server.js       #backend entry point
+│   └── package.json        #dependencies and metadata
+│
+└── README.md
 ```
-PORT=4000
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/geekharman003/job-application-tracker
+cd job-application-tracker
+```
+
+---
+
+### 2️⃣ Setup Backend
+
+```bash
+cd backend
+npm install
+```
+
+Create a `.env` file:
+
+```env
+PORT=3000
 NODE_ENV=development
-DB_USERNAME=root
-DB_PASSWORD=secret
+
+
+# DB CREDENTIALS
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
 DB_HOST=localhost
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-RESEND_API_KEY=your_resend_api_key
-EMAIL_FROM=hello@example.com
-EMAIL_FROM_NAME="Job Application Tracker"
+
+
+# JWT
+JWT_SECRET=secret
+
+
+# AWS
+BUCKET_NAME=your_bucket_name
+BUCKET_REGION=your_bucket_region
+ACCESS_KEY_ID=your_access_key
+SECRET_ACCESS_KEY=your_secret_key
+
+
+# RESEND
+RESEND_API_KEY=your_api_key
+EMAIL_FROM=onboarding@resend.dev
+EMAIL_FROM_NAME=your_name
 ```
 
-Project structure (key files)
-- [backend/src/server.js](backend/src/server.js) — app entry
-- [backend/src/config/env.js](backend/src/config/env.js) — environment variables
-- [backend/src/config/cloudinary.js](backend/src/config/cloudinary.js) — Cloudinary setup
-- [backend/src/routes](backend/src/routes) — route definitions (auth, user, company, application, reminder, dashboard)
-- [backend/src/controllers](backend/src/controllers) — request handlers
-- [backend/src/models](backend/src/models) — Sequelize models
-- [backend/src/utils/db.js](backend/src/utils/db.js) — DB connection helper
+Run backend:
 
-API notes
-- Routes are defined under [backend/src/routes](backend/src/routes). Inspect these files to see endpoints and required request bodies/params.
-- Authentication uses JWT via `backend/src/middleware/auth.middleware.js`.
+```bash
+npm run dev
+```
 
-**API Reference**
+---
 
-Base URL: http://localhost:PORT (default `PORT` from .env)
+### 3️⃣ Setup Frontend
 
-Auth
-- POST /api/auth/signup — Create account
-  - Body: `{ name, email, password }`
-  - Response: user id, fullName, email; sets `jwt` cookie on success
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
 
-- POST /api/auth/login — Sign in
-  - Body: `{ email, password }`
-  - Response: user id, fullName, email; sets `jwt` cookie on success
+App runs on:
 
-- POST /api/auth/logout — Sign out
-  - Clears auth cookie
+👉 http://localhost:5173
 
-Users
-- GET /api/users/profile — Get current user profile (protected)
-  - Auth: cookie JWT
-  - Response: user object (password excluded)
+---
 
-- PUT /api/users/profile — Update profile (protected)
-  - Body: `{ name?, email? }` (at least one required)
-  - Response: success message
+## 📊 Usage
 
-Companies
-- POST /api/companies — Create company (protected)
-  - Body: `{ name, industry?, size?, contactEmail? }`
-  - Response: created company
+- Sign up / Log in
+- Add job applications
+- Edit job applications
+- Track statuses (Applied, Interview, Offer, Rejected)
+- Upload resumes
+- View analytics dashboard
+- Export data
 
-- GET /api/companies — List companies for current user (protected)
-  - Response: array of companies
+---
 
-- PUT /api/companies/:id — Update company (protected)
-  - Path: `:id` company id
-  - Body: `{ name?, industry?, size?, contactEmail? }`
-  - Response: success message
+# 🔗 API Documentation
 
-- DELETE /api/companies/:id — Delete company (protected)
-  - Response: success message
+Base URL:
 
-Applications
-- POST /api/applications — Create application with optional file upload (protected)
-  - Multipart/form-data: include `file` (resume/attachment)
-  - Body fields: `name` (company), `jobTitle` (required), `applicationDate?`, `status?`, `notes?`, plus optional company fields `industry?`, `size?`, `contactEmail?`
-  - Response: success message
+```id="0zsm4m"
+http://localhost:3000/api
+```
 
-- GET /api/applications — List applications (protected)
-  - Query params (optional): `status`, `startDate`, `endDate` (ISO date strings)
-  - Response: array of applications
+---
 
-- GET /api/applications/:id — Get single application (protected)
-  - Response: application object
+## 🔑 Authentication Routes
 
-- PUT /api/applications/:id — Update application fields (protected)
-  - Body: `{ jobTitle?, applicationDate?, status?, notes? }`
-  - Response: success message
+### 📌 Register User
 
-- DELETE /api/applications/:id — Delete application (protected)
-  - Response: success message
+**POST** `/auth/signup`
 
-Attachments
-- PUT /api/applications/:id/attachments — Replace attachment for application (protected)
-  - Multipart/form-data: `file` field
-  - Response: success message
+#### Request Body
 
-Reminders
-- POST /api/applications/:applicationId/reminders — Create reminder for application (protected)
-  - Body: `{ reminderDate }` (ISO date string)
-  - Response: success message
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "12345678"
+}
+```
 
-- GET /api/applications/:applicationId/reminders/:reminderId — Get reminder (protected)
-  - Response: reminder object
+#### Response
 
-- DELETE /api/applications/:applicationId/reminders/:reminderId — Delete reminder (protected)
-  - Response: success message
+```json
+{
+  "id": 1,
+  "fullName": "John Doe",
+  "email": "john@example.com",
+  "message": "User created successfully"
+}
+```
 
-Dashboard
-- GET /api/dashboard/summary — Get summary stats (protected)
-  - Response: `{ totalApplications, applied, interviewed, offered, rejected, noResponse, responseRate }`
+✅ A **JWT cookie is set automatically** in the browser.
 
-Authentication
-- Protected routes require a valid JWT cookie (middleware: `protectRoute`). The server sets the `jwt` cookie on successful login/signup.
+### 📌 Login User
 
-Notes & examples
-- For file uploads use `multipart/form-data` and the `file` key (handled by Cloudinary via `multer-storage-cloudinary`).
-- Dates should be provided as ISO date strings (e.g. `2024-08-01`).
-- Inspect controller code in `backend/src/controllers` for exact response formats and validation behavior.
+**POST** `/auth/login`
 
-Testing and development
-- There are no automated tests included. For manual testing use Postman or curl against the running server.
-- Use `node-cron` reminders are configured in `backend/src/utils/reminder.js`.
+#### Request Body
 
-Deployment
-- Provide the environment variables in your hosting platform.
-- Ensure MySQL is accessible and migrations/initialization are applied (this project uses Sequelize models directly; add migrations if desired).
+```json
+{
+  "email": "john@example.com",
+  "password": "12345678"
+}
+```
 
-Contributing
-- Open an issue or submit a PR for improvements. Keep changes focused and include any needed migrations or seed data.
+#### Response
 
-License
-- ISC (see package.json)
+```json
+{
+  "id": 1,
+  "fullName": "John Doe",
+  "email": "john@example.com"
+}
+```
+
+✅ A **JWT cookie is set automatically** in the browser.
+
+### 📌 Logout User
+
+**POST** `/auth/logout`
+
+#### Response
+
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
+✅ Clears the authentication cookie.
+
+---
+
+## 📋 Application Routes (Protected)
+
+All routes below require a valid **JWT cookie**.
+
+### 📌 Get All Applications
+
+**GET** `/applications?limit=${limit}&offset=${offset}&title=${title}&status=${status}&company=${company}`
+
+#### Response
+
+```json
+{
+    "applications":[
+        {
+            {"id":1,"UserId":1,"CompanyId":1,"jobTitle":"SDE1","location":"switzerland","salaryRange":"30lpa-50lpa","jobLink":"https://www.google.com/about/careers/applications/jobs/results/136355974737732294-software-engineer-ii-calendar-android?q=%22Software%20Engineer%22&target_level=EARLY&page=2#!t=jo&jid=127025001&","status":"interview","applicationDate":"2026-03-28","resumeVersion":"resume_v1_backend","jobDescription":""
+            }
+        }
+    ],
+	"pagination": {
+		"start": 1,
+		"end": 5,
+		"hasNextPage": true,
+		"hasPrevPage": false,
+		"totalRecords": 8
+	}
+}
+```
+
+### 📌 Create Application
+
+**POST** `/applications`
+
+#### Request Body
+
+```json
+{
+  "company": "Google",
+  "jobTitle": "SDE1",
+  "location": "Noida",
+  "salaryRange": "20lpa-30lpa",
+  "jobLink": "https://www.google.com/careers/jobs/full-stack-engineer",
+  "status": "Applied",
+  "applicationDate": "2026-04-05",
+  "resumeVersion": "resume_v1_backend",
+  "jobDescription": "Applied via LinkedIn"
+}
+```
+
+#### Response
+
+```json
+{
+  "id": 11,
+  "UserId": 1,
+  "CompanyId": 2,
+  "jobTitle": "MTS",
+  "location": "hyderabad",
+  "salaryRange": "30lpa-40lpa",
+  "jobLink": "",
+  "status": "applied",
+  "applicationDate": "2026-04-01",
+  "resumeVersion": "Harman_Resume_Fullstack",
+  "jobDescription": "",
+  "updatedAt": "2026-04-01T12:11:21.826Z",
+  "createdAt": "2026-04-01T12:11:21.826Z",
+  "company": "microsoft"
+}
+```
+
+### 📌 Update Application
+
+**PUT** `/applications/:id`
+
+#### Request Body
+
+```json
+{
+  "status": "Interview"
+}
+```
+
+#### Response
+
+```json
+{
+  "message": "Application details updated successfully"
+}
+```
+
+### 📌 Delete Application
+
+**DELETE** `/applications/:id`
+
+#### Response
+
+```json
+{
+  "message": "Application deleted successfully"
+}
+```
+
+---
+
+## 👤 User Routes (Protected)
+
+All routes below require a valid **JWT cookie**.
+
+**GET** `/users/profile` -> Get User Profile
+
+**PUT** `/users/profile` -> Update User Profile
+
+**DELETE** `/users/profile` -> Delete User Profile
+
+**POST** `/users/profile-image` -> upload Profile Pic
+
+**POST** `/users/profile/resumes` -> upload Resume
+
+**GET** `/users/profile/resumes` -> get all Resumes
+
+**DELETE** `/users/profile/resumes/:id` -> delete a resume
+
+**GET** `/users/profile/data` -> get applications data as CSV
+
+---
+
+## 🌐 Dashboard Routes (Protected)
+
+All routes below require a valid **JWT cookie**.
+
+**GET** `/dashboard/summary` -> Get dashboard summary
+
+---
+
+## 🚧 Future Improvements
+
+These features can be added to enhance the usability of the project.
+
+- 🌐 **Browser Extension**
+  - Save job postings directly from LinkedIn, Indeed, etc.
+
+- 📅 **Interview Scheduler**
+  - Calendar integration for tracking interview dates
+
+- 📱 **Mobile App Version**
+  - React Native or Flutter app for on-the-go tracking
+
+- 🔐 **OAuth Login**
+  - Sign in with Google, LinkedIn, etc.
+
+---
+
+## 📜 License
+
+This project is licensed under the **ISC License**.
+
+---
