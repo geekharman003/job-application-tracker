@@ -1,7 +1,7 @@
 import express from "express";
 const app = express();
 
-import path from "path";
+import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
 
@@ -36,13 +36,25 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/applications", applicationRoutes);
 app.use("/api/companies", companyRoutes);
 app.use("/api/dashboard/", dashboardRoutes);
+
+// deployment code
+if (ENV.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "..", "..", "/frontend/dist")));
+
+  app.get("/{*splat}", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "..", "frontend/dist/index.html"));
+  });
+}
+else{
+  app.use(express.static(path.join(__dirname, "public")));
+}
 
 await sequelize.sync({ force: false });
 app.listen(ENV.PORT || 3000, async () => {
