@@ -57,6 +57,6 @@ else{
 }
 
 await sequelize.sync({ force: false });
-app.listen(ENV.PORT || 3000, async () => {
+app.listen(ENV.PORT || 3000,"0.0.0.0", async () => {
   console.log(`server is running on PORT:${ENV.PORT}`);
 });
