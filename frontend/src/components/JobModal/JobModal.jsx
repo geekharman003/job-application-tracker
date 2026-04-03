@@ -62,7 +62,7 @@ function JobModal({
       setApplications(response?.data?.applications);
       setPagination(response?.data?.pagination);
 
-      toast.success("Profile Delete successfully");
+      toast.success("Application added successfully");
     } catch (error) {
       console.log(error);
       toast.error("Error occur in adding applciation!");
