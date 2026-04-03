@@ -34,8 +34,6 @@ function Jobs() {
 
   const navigate = useNavigate();
 
-  console.log(page);
-
   useEffect(() => {
     setPage(1);
   }, [filters.company, filters.jobTitle, filters.status]);
