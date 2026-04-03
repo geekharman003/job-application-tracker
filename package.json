@@ -4,7 +4,7 @@
   "description": "A full-stack web application to **track, manage, and analyze job applications** efficiently.\r Built with a modern tech stack, it helps users stay organized throughout their job search journey.",
   "main": "index.js",
   "scripts": {
-    "build":"npm install --prefix frontend && npm run build --prefix frontend",
+    "build":"npm install --prefix backend && npm install --prefix frontend --production=false && npm run build --prefix frontend",
     "start": "npm run start --prefix backend"
   },
   "keywords": [],
