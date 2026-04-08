@@ -27,7 +27,7 @@ function Signup() {
       setAuthUser(response.data);
       toast.success("Signup Successfully");
     } catch (e) {
-      toast.error("Something went wrong!");
+      toast.error(e?.response?.data?.message || "Something went wrong");
     } finally {
       setIsSigningUp(false);
       setName("");
