@@ -79,7 +79,16 @@ function Login() {
         >
           {isLoggingIn ? <Loader className="animate-spin" /> : "LOGIN"}
         </button>
-        <p className="text-center mt-1">
+        <button
+          onClick={() => {
+            setEmail("guest@gmail.com");
+            setPassword("guest123");
+          }}
+          className=" text-blue-500 p-1 rounded-xl mt-1"
+        >
+          Login as guest user
+        </button>
+        <p className="text-center mt-5">
           No account?{" "}
           <Link to={"/signup"} className="hover:text-blue-500 hover:underline">
             Sign Up

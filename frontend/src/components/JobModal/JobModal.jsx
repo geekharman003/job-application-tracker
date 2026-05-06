@@ -30,7 +30,6 @@ function JobModal({
         const response = await axiosClient.get("/users/profile/resumes");
 
         setResumeVersions(response?.data);
-      
       } catch (error) {
         console.log("Error during loading resumes:", error);
         toast.error("Failed to load resumes");
@@ -235,16 +234,16 @@ function JobModal({
                 id="resumeVersion"
                 required
               >
-                <option value="" disabled>Select a Resume</option>
-                {resumeVersions && resumeVersions.length ? (
-                  resumeVersions.map((resume, index) => (
-                    <option key={index} value={resume.version}>
-                      {resume.version}
-                    </option>
-                  ))
-                ) : (
-                  <option value="none">Select one</option>
-                )}
+                <option value="" disabled>
+                  Select a Resume
+                </option>
+                {resumeVersions && resumeVersions.length
+                  ? resumeVersions.map((resume, index) => (
+                      <option key={index} value={resume.version}>
+                        {resume.version}
+                      </option>
+                    ))
+                  : ""}
               </select>
               {
                 <p
